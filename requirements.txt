@@ -6,3 +6,4 @@ xgboost>=2.0.0
 plotly>=5.18.0
 shap>=0.44.0
 statsmodels>=0.14.0
+openpyxl>=3.0.0
