@@ -1,7 +1,7 @@
 """
 app.py · MONASTERY Club — Analítica Predictiva de Aforo y Demanda
 Streamlit entry point — navegación multi-página con sidebar institucional
-Minería de Datos 801 · UDeC · 2026
+Business Analytics 801 · UDeC · 2026
 """
 
 import streamlit as st
@@ -185,7 +185,7 @@ with st.sidebar:
         ANALYTICS · CLUB FACATATIVÁ
       </div>
       <div style="font-size:.68rem;color:#2A2A3E;margin-top:.3rem">
-        Minería de Datos 801 · UDeC · 2026
+        Business Analytics 801 · UDeC · 2026
       </div>
     </div>
     """, unsafe_allow_html=True)
@@ -235,9 +235,9 @@ with st.sidebar:
       Maicol López · Daniela Romero<br>
       Juan Pérez · Carlos Torrado<br><br>
       <b style="color:#4A4A62">Docente</b><br>
-      Oscar Jobany Gómez Ochoa<br><br>
+      Ivon Maritza Forero Rios<br><br>
       <b style="color:#4A4A62">Asignatura</b><br>
-      Minería de Datos — 801
+      Business Analytics — 801
     </div>
     """, unsafe_allow_html=True)
 
@@ -247,7 +247,7 @@ st.markdown("""
   <span style="font-size:2rem">🎵</span>
   <div>
     <h1>MONASTERY Club — Analítica Predictiva de Aforo y Demanda</h1>
-    <p class="subtitle">Modelo predictivo y prescriptivo · CRISP-DM · Minería de Datos 801 · Universidad de Cundinamarca · 2026</p>
+    <p class="subtitle">Modelo predictivo y prescriptivo · CRISP-DM · Business Analytics 801 · Universidad de Cundinamarca · 2026</p>
   </div>
 </div>
 """, unsafe_allow_html=True)

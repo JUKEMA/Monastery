@@ -1,7 +1,7 @@
 """
 modelo_monastery.py
 MONASTERY Club · Analítica Predictiva de Aforo y Demanda
-Minería de Datos 801 · UDeC · 2026
+Business Analytics 801 · UDeC · 2026
 Encapsula CRISP-DM Fases 3-5: Preparación, Modelado y Evaluación.
 Dos capas de predicción:
   · Regresión   → asistencia_total (número de asistentes)

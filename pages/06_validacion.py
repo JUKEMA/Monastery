@@ -4,7 +4,7 @@ MONASTERY Analytics · CRISP-DM Fase 6: Comunicación y Cierre
 Compara predicciones del modelo contra resultados reales para generar
 confianza en la toma de decisiones. Usa los últimos N eventos del
 dataset histórico como "prueba de fuego" temporal.
-Minería de Datos 801 · UDeC · 2026
+Business Analytics 801 · UDeC · 2026
 """
 
 import streamlit as st
