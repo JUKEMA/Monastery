@@ -158,7 +158,7 @@ if modelo.trained:
     st.markdown("---")
     st.markdown("#### 4 · Resultados del Entrenamiento")
 
-    tab_r, tab_c = st.tabs(["Modelos de Regresión", "Modelos de Clasificación"])
+    tab_r, tab_c = st.tabs(["📈 Modelos de Regresión", "🎯 Modelos de Clasificación"])
 
     COLORS = {"Regresión Lineal": "#8B5CF6", "Random Forest Reg.": "#C9A227",
                "XGBoost Reg.": "#3FB950", "Gradient Boosting": "#58A6FF",

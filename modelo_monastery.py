@@ -1,7 +1,7 @@
 """
 modelo_monastery.py
 MONASTERY Club · Analítica Predictiva de Aforo y Demanda
-Business Analytics 801 · UDeC · 2026
+Minería de Datos 801 · UDeC · 2026
 Encapsula CRISP-DM Fases 3-5: Preparación, Modelado y Evaluación.
 Dos capas de predicción:
   · Regresión   → asistencia_total (número de asistentes)
@@ -128,7 +128,7 @@ class ModeloMonastery:
 
         # KPIs derivados
         df["tasa_ocupacion"] = (
-            df["asistencia_total"] / df["aforo_maximo"] * 100
+            df["asistencia_total"] / df["aforo_maximo"].replace(0, np.nan) * 100
         ).round(2)
         df["ingreso_total"] = (
             df["consumo_bebidas"]
@@ -243,7 +243,7 @@ class ModeloMonastery:
         """
         from sklearn.model_selection import train_test_split, cross_val_score, KFold, StratifiedKFold
         from sklearn.linear_model import LinearRegression, LogisticRegression
-        from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier, GradientBoostingRegressor
+        from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier, HistGradientBoostingRegressor
         from sklearn.preprocessing import StandardScaler
         from sklearn.metrics import (
             mean_absolute_error, mean_squared_error, r2_score,
@@ -281,16 +281,18 @@ class ModeloMonastery:
         modelos_reg = {
             "Regresión Lineal": LinearRegression(),
             "Random Forest Reg.": RandomForestRegressor(
-                n_estimators=200, max_depth=10, random_state=42, n_jobs=-1),
+                n_estimators=100, max_depth=6, random_state=42, n_jobs=-1),
         }
         if tiene_xgb:
             modelos_reg["XGBoost Reg."] = XGBRegressor(
-                n_estimators=200, max_depth=6, learning_rate=0.1,
-                random_state=42, verbosity=0,
+                n_estimators=100, max_depth=5, learning_rate=0.1,
+                random_state=42, verbosity=0, n_jobs=-1,
             )
         else:
-            modelos_reg["Gradient Boosting"] = GradientBoostingRegressor(
-                n_estimators=200, max_depth=5, learning_rate=0.1, random_state=42)
+            # HistGradientBoosting: versión rápida de sklearn (~10x más veloz que GradientBoosting)
+            modelos_reg["Hist Gradient Boosting"] = HistGradientBoostingRegressor(
+                max_iter=100, max_depth=5, learning_rate=0.1,
+                random_state=42, early_stopping=False)
 
         cv_r = KFold(n_splits=5, shuffle=True, random_state=42)
         res_reg = {}
@@ -300,11 +302,13 @@ class ModeloMonastery:
             if nombre == "Regresión Lineal":
                 modelo.fit(X_tr_sr, y_r_tr)
                 y_pred = modelo.predict(X_te_sr)
-                cv_sc  = cross_val_score(modelo, sc_r.transform(X), y_reg, cv=cv_r, scoring="r2")
+                cv_sc  = cross_val_score(modelo, sc_r.transform(X), y_reg, cv=cv_r,
+                                         scoring="r2", n_jobs=-1)
             else:
                 modelo.fit(X_tr, y_r_tr)
                 y_pred = modelo.predict(X_te)
-                cv_sc  = cross_val_score(modelo, X, y_reg, cv=cv_r, scoring="r2")
+                cv_sc  = cross_val_score(modelo, X, y_reg, cv=cv_r,
+                                         scoring="r2", n_jobs=-1)
 
             y_pred = np.clip(y_pred, 0, None)
             rmse   = float(np.sqrt(mean_squared_error(y_r_te, y_pred)))
@@ -328,13 +332,13 @@ class ModeloMonastery:
             "Regresión Logística": LogisticRegression(
                 max_iter=1000, random_state=42, C=1.0, class_weight="balanced"),
             "Random Forest Clf.": RandomForestClassifier(
-                n_estimators=200, max_depth=10, random_state=42,
+                n_estimators=100, max_depth=6, random_state=42,
                 n_jobs=-1, class_weight="balanced"),
         }
         if tiene_xgb:
             modelos_clf["XGBoost Clf."] = XGBClassifier(
-                n_estimators=200, max_depth=6, learning_rate=0.1,
-                eval_metric="logloss", random_state=42, verbosity=0,
+                n_estimators=100, max_depth=5, learning_rate=0.1,
+                eval_metric="logloss", random_state=42, verbosity=0, n_jobs=-1,
                 scale_pos_weight=float((y_clf == 0).sum()) / ((y_clf == 1).sum() + 1),
             )
 
@@ -347,12 +351,14 @@ class ModeloMonastery:
                 modelo.fit(X_tr_sc, y_c_tr)
                 y_pred  = modelo.predict(X_te_sc)
                 y_proba = modelo.predict_proba(X_te_sc)[:, 1]
-                cv_sc   = cross_val_score(modelo, sc_c.transform(X), y_clf, cv=cv_c, scoring="f1")
+                cv_sc   = cross_val_score(modelo, sc_c.transform(X), y_clf, cv=cv_c,
+                                          scoring="f1", n_jobs=-1)
             else:
                 modelo.fit(X_tr, y_c_tr)
                 y_pred  = modelo.predict(X_te)
                 y_proba = modelo.predict_proba(X_te)[:, 1]
-                cv_sc   = cross_val_score(modelo, X, y_clf, cv=cv_c, scoring="f1")
+                cv_sc   = cross_val_score(modelo, X, y_clf, cv=cv_c,
+                                          scoring="f1", n_jobs=-1)
 
             cm = confusion_matrix(y_c_te, y_pred, labels=[0, 1])
             try:

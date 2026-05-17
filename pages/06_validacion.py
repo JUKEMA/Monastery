@@ -4,7 +4,7 @@ MONASTERY Analytics · CRISP-DM Fase 6: Comunicación y Cierre
 Compara predicciones del modelo contra resultados reales para generar
 confianza en la toma de decisiones. Usa los últimos N eventos del
 dataset histórico como "prueba de fuego" temporal.
-Business Analytics 801 · UDeC · 2026
+Minería de Datos 801 · UDeC · 2026
 """
 
 import streamlit as st
@@ -704,7 +704,7 @@ with tab_cal:
             return ""
 
     st.dataframe(
-        df_cmp.style.applymap(style_delta, subset=["Δ"]),
+        df_cmp.style.map(style_delta, subset=["Δ"]),
         use_container_width=True, hide_index=True, height=145,
     )
 
@@ -777,8 +777,8 @@ with tab_tabla:
 
     st.dataframe(
         df_tabla.style
-            .applymap(color_acierto, subset=["Acierto"])
-            .applymap(color_aforo,   subset=["Aforo real", "Aforo pred."]),
+            .map(color_acierto, subset=["Acierto"])
+            .map(color_aforo,   subset=["Aforo real", "Aforo pred."]),
         use_container_width=True, hide_index=True, height=420,
     )
 

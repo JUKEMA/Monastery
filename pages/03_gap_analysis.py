@@ -317,7 +317,7 @@ def color_brecha(val):
     return ""
 
 st.dataframe(
-    df_top.style.applymap(color_brecha, subset=["Brecha (%)"]).format({
+    df_top.style.map(color_brecha, subset=["Brecha (%)"]).format({
         "Asistencia real": "{:,.0f}", "Máx. teórico": "{:,.0f}",
         "Brecha (asist.)": "{:,.0f}", "Brecha (%)": "{:.1f}",
         "Ingreso perdido ($)": "${:,.0f}", "Eficiencia (%)": "{:.1f}",

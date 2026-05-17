@@ -1,7 +1,7 @@
 """
 app.py · MONASTERY Club — Analítica Predictiva de Aforo y Demanda
 Streamlit entry point — navegación multi-página con sidebar institucional
-Business Analytics 801 · UDeC · 2026
+Minería de Datos 801 · UDeC · 2026
 """
 
 import streamlit as st
@@ -185,7 +185,7 @@ with st.sidebar:
         ANALYTICS · CLUB FACATATIVÁ
       </div>
       <div style="font-size:.68rem;color:#2A2A3E;margin-top:.3rem">
-        Business Analytics 801 · UDeC · 2026
+        Minería de Datos 801 · UDeC · 2026
       </div>
     </div>
     """, unsafe_allow_html=True)
@@ -235,9 +235,9 @@ with st.sidebar:
       Maicol López · Daniela Romero<br>
       Juan Pérez · Carlos Torrado<br><br>
       <b style="color:#4A4A62">Docente</b><br>
-      Ivon Maritza Forero Rios<br><br>
+      Oscar Jobany Gómez Ochoa<br><br>
       <b style="color:#4A4A62">Asignatura</b><br>
-      Business Analytics — 801
+      Minería de Datos — 801
     </div>
     """, unsafe_allow_html=True)
 
@@ -247,7 +247,7 @@ st.markdown("""
   <span style="font-size:2rem">🎵</span>
   <div>
     <h1>MONASTERY Club — Analítica Predictiva de Aforo y Demanda</h1>
-    <p class="subtitle">Modelo predictivo y prescriptivo · CRISP-DM · Business Analytics 801 · Universidad de Cundinamarca · 2026</p>
+    <p class="subtitle">Modelo predictivo y prescriptivo · CRISP-DM · Minería de Datos 801 · Universidad de Cundinamarca · 2026</p>
   </div>
 </div>
 """, unsafe_allow_html=True)
@@ -258,7 +258,7 @@ with col1:
     st.markdown("""
     <div class="risk-card">
       <div style="font-size:.7rem;color:#C9A227;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem">
-        Flujo de trabajo
+        ⚡ Flujo de trabajo
       </div>
       <div style="font-size:.86rem;color:#C9D1D9;line-height:2">
         1 · Cargar dataset Excel (9 tablas)<br>
@@ -276,7 +276,7 @@ with col2:
     st.markdown("""
     <div class="risk-card">
       <div style="font-size:.7rem;color:#3FB950;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem">
-        Dataset MONASTERY
+        📦 Dataset MONASTERY
       </div>
       <div style="font-size:.86rem;color:#C9D1D9;line-height:2">
         <span style="color:#8B949E">Eventos:</span> 150 registros históricos<br>
@@ -292,7 +292,7 @@ with col3:
     st.markdown("""
     <div class="risk-card">
       <div style="font-size:.7rem;color:#EF4444;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem">
-        Variables objetivo
+        🎯 Variables objetivo
       </div>
       <div style="font-size:.86rem;color:#C9D1D9;line-height:2.1">
         <span style="color:#EF4444">■ Aforo Crítico</span> → Ocupación ≥ 85%<br>

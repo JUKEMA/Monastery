@@ -267,7 +267,7 @@ with tabs[1]:
             return ""
 
         st.dataframe(
-            df_rank_f.style.applymap(color_prob, subset=["Prob. crítico (%)"]).format({
+            df_rank_f.style.map(color_prob, subset=["Prob. crítico (%)"]).format({
                 "Asistencia real": "{:,.0f}", "Ocup. (%)": "{:.1f}",
                 "Prob. crítico (%)": "{:.1f}", "Ingreso ($)": "${:,.0f}",
             }),
